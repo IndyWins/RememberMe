@@ -10,9 +10,22 @@
 		0B2E88D02DD71F2F00DBD448 /* RememberMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RememberMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		0BFD70102DDC665E0026C628 /* Exceptions for "RememberMe" folder in "RememberMe" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 0B2E88CF2DD71F2F00DBD448 /* RememberMe */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0B2E88D22DD71F2F00DBD448 /* RememberMe */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				0BFD70102DDC665E0026C628 /* Exceptions for "RememberMe" folder in "RememberMe" target */,
+			);
 			path = RememberMe;
 			sourceTree = "<group>";
 		};
@@ -256,6 +269,8 @@
 				DEVELOPMENT_TEAM = Q2UPQKTL9D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RememberMe/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To update your contacts Map location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -284,6 +299,8 @@
 				DEVELOPMENT_TEAM = Q2UPQKTL9D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RememberMe/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To update your contacts Map location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

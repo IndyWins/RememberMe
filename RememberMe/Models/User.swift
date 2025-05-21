@@ -16,13 +16,24 @@ class User {
     var id: UUID
     var name: String
     var notes: String
+    
     @Attribute(.externalStorage) var photo: Data?
     
-    init(id: UUID, name: String, notes: String, photo: Data?) {
+    var latitude: Double
+    var longitude: Double
+    
+    var coordinate: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+    
+    init(id: UUID, name: String, notes: String, photo: Data?, latitude: Double, longitude: Double) {
         self.id = id
         self.name = name
         self.notes = notes
         self.photo = photo
+        self.latitude = latitude
+        self.longitude = longitude
+
     }
 }
 
