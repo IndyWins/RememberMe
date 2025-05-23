@@ -10,7 +10,7 @@ import PhotosUI
 import SwiftData
 import SwiftUI
 
-struct AddNewContact: View {
+struct NewContactView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
     
@@ -127,5 +127,5 @@ struct AddNewContact: View {
 }
 
 #Preview {
-    AddNewContact()
+    NewContactView()
 }
