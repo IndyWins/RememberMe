@@ -29,12 +29,12 @@ struct GridLayout: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width:150, height:150)
-                                    .padding()
+                                    .padding(10)
                             }
                             
                             Text(user.name)
                                 .font(.headline)
-                                .foregroundStyle(.red)
+                                .foregroundStyle(.white)
                                 .padding(.vertical)
                                 .frame(maxWidth: .infinity)
                                 .background(.lightBackground)

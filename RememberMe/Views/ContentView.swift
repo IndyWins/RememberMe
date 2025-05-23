@@ -19,7 +19,17 @@ struct ContentView: View {
             List {
                 ForEach(users) { user in
                     NavigationLink(value: user) {
-                        Text(user.name)
+                        HStack {
+                            
+                                if let userImage = user.image {
+                                    userImage
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width:40, height:40)
+                                }
+                            
+                            Text(user.name)
+                        }
                     }
                 }
                 .onDelete(perform: deleteUser)
@@ -39,7 +49,7 @@ struct ContentView: View {
                 }
             }
             .sheet(isPresented: $showAddContactSheet) {
-                AddNewContact()
+                NewContactView()
             }
         }
     }
@@ -54,5 +64,8 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    NavigationStack {
+        ContentView()
+            .modelContainer(PreviewData.shared)
+    }
 }
