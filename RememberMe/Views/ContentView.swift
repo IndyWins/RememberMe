@@ -14,51 +14,50 @@ struct ContentView: View {
     
     @State private var showAddContactSheet: Bool = false
     
+    @AppStorage("showingGrid") private var showingGrid = true
+    
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(users) { user in
-                    NavigationLink(value: user) {
-                        HStack {
-                            
-                                if let userImage = user.image {
-                                    userImage
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width:40, height:40)
-                                }
-                            
-                            Text(user.name)
+            Group {
+                if showingGrid {
+                    ListLayout()
+                } else {
+                    GridLayout()
+                }
+            }
+            .toolbar {
+                                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                    showingGrid.toggle()
+                    } label: {
+                        if showingGrid {
+                            Label ("Show as grid", systemImage: "square.grid.2x2")
+                        } else {
+                            Label ("Show as list", systemImage: "list.dash")
                         }
                     }
                 }
-                .onDelete(perform: deleteUser)
-            }
-            .navigationTitle("Contacts")
-            .navigationDestination(for: User.self) { user in
-                DetailView(user: user)
-            }
-            .toolbar {
+                
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Add Contact", systemImage: "plus") {
                         showAddContactSheet.toggle()
                     }
                 }
-                ToolbarItem(placement: .topBarLeading) {
-                    EditButton()
+                
+                if showingGrid {
+                    ToolbarItem(placement: .topBarLeading) {
+                        EditButton()
+                    }
                 }
+            }
+            .navigationTitle("Contacts")
+            .navigationDestination(for: User.self) { user in
+                DetailView(user: user)
             }
             .sheet(isPresented: $showAddContactSheet) {
                 NewContactView()
             }
-        }
-    }
-    
-    
-    func deleteUser (at offsets: IndexSet) {
-        for offset in offsets {
-            let user = users[offset]
-            modelContext.delete(user)
         }
     }
 }

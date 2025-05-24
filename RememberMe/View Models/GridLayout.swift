@@ -49,6 +49,12 @@ struct GridLayout: View {
             .padding([.horizontal, .bottom])
         }
     }
+    func deleteUser (at offsets: IndexSet) {
+        for offset in offsets {
+            let user = users[offset]
+            modelContext.delete(user)
+        }
+    }
 }
 
 #Preview {

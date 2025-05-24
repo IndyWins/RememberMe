@@ -12,13 +12,12 @@ struct ListLayout: View {
     
     @Environment(\.modelContext) var modelContext
     @Query(sort: \User.name) private var users: [User]
-
+    
     var body: some View {
-        List(users) { user in
-            NavigationLink(value: user) {
-                HStack {
+        List {
+            ForEach(users) { user in
+                NavigationLink(value: user) {
                     HStack {
-                        
                             if let userImage = user.image {
                                 userImage
                                     .resizable()
@@ -26,14 +25,21 @@ struct ListLayout: View {
                                     .frame(width:70, height:70)
                                     .padding()
                             }
-                        
-                        Text(user.name)
-                            .font(.headline)
+                            
+                            Text(user.name)
+                                .font(.headline)
                     }
                 }
             }
+            .onDelete(perform: deleteUser)
+            .listStyle(.plain)
         }
-        .listStyle(.plain)
+    }
+    func deleteUser (at offsets: IndexSet) {
+        for offset in offsets {
+            let user = users[offset]
+            modelContext.delete(user)
+        }
     }
 }
 

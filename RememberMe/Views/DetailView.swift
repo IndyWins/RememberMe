@@ -16,6 +16,8 @@ struct DetailView: View {
     
     let user: User
     
+    @State private var showDeleteConfirmation = false
+    
     var body: some View {
         VStack {
             Form {
@@ -57,21 +59,30 @@ struct DetailView: View {
                 Section("Additional Info:") {
                     Text(user.notes)
                 }
+                
+                Section {
+                    Button(role: .destructive) {
+                        showDeleteConfirmation = true
+                    } label: {
+                        Label("Delete Contact", systemImage: "trash")
+                        .frame(maxWidth: .infinity)
+                    }
+                }
             }
         }
+        .alert("Are you sure?", isPresented: $showDeleteConfirmation) {
+            Button("Delete", role: .destructive, action: deleteUser)
+        }
+    }
+    
+    func deleteUser() {
+        modelContext.delete(user)
+        dismiss()
     }
 }
 
 #Preview {
-    let sampleUser = User(
-        id: UUID(),
-        name: "John",
-        notes: "Great Guy",
-        photo: nil,
-        latitude: 0,
-        longitude: 0
-        
-    )
+    let sampleUser = User(id: UUID(), name: "Eren", notes: "The Attack Titan", photo: UIImage(named: "Eren")?.jpegData(compressionQuality: 1.0), latitude: 52, longitude: -2)
     NavigationStack {
         DetailView(user: sampleUser)
     }
